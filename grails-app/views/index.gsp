@@ -13,6 +13,8 @@
 	<main id="taskPage">
 		<section id="taskCreation" class="not">
 			<form id="taskForm">
+				<input type="hidden" name="id" />
+				<input type="hidden" name="complete" />
 				<div>
 					<label>Tarefa</label> 
 					<input type="text" required="required" name="task" class="large" maxlength="200" placeholder="Estudar e programar" />
@@ -27,8 +29,6 @@
 						<option value="Profissional">Profissional</option>
 					</select>
 				</div>
-				<input type="hidden" name="id" />
-				<input type="hidden" name="complete" />
 				<nav>
 					<a href="#" id="saveTask">Salvar tarefa</a>
 					<a href="#" id="clearTask">Limpar tarefa</a>
@@ -101,12 +101,7 @@
 	</main>
 	<footer>Você tem <span id="taskCount"></span> tarefas</footer>
 
-<script>
-$(document).ready(function() {
-	tasksController.init($('#taskPage'));
-	tasksController.loadTasks();
-	});	
-</script>
+
 
 
 <script id="taskRow" type="text/x-jQuery-tmpl">
@@ -124,6 +119,14 @@ $(document).ready(function() {
 		</nav>
 	</td>
 </tr>
+</script>
+
+<script>
+	$(document).ready(function() {
+		tasksController.init($('#taskPage'), function() {
+			tasksController.loadTasks();
+		});	
+	});
 </script>
 </body>
 </html>
